@@ -1,34 +1,18 @@
 package router
 
-import "github.com/gin-gonic/gin"
+import (
+	"github.com/Lzrb0x/study-go-api.git/handler"
+	"github.com/gin-gonic/gin"
+)
 
 func InitializeRoutes(router *gin.Engine) {
-	v1 := router.Group("v1")
+	v1 := router.Group("/api/v1")
 	{
-		v1.GET("/opening", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "pong",
-			})
-		})
-		v1.POST("/opening", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "pong",
-			})
-		})
-		v1.DELETE("/opening", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "pong",
-			})
-		})
-		v1.PUT("/opening", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "pong",
-			})
-		})
-		v1.GET("/openings", func(c *gin.Context) {
-			c.JSON(200, gin.H{
-				"message": "pong",
-			})
-		})
+		// Opening routes
+		v1.GET("/opening", handler.GetOpeningHandler)
+		v1.POST("/opening", handler.CreateOpeningHandler)
+		v1.DELETE("/opening", handler.DeleteOpeningHandler)
+		v1.PUT("/opening", handler.UpdateOpeningHandler)
+		v1.GET("/openings", handler.GetOpeningsHandler)
 	}
 }
